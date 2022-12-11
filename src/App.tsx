@@ -1,8 +1,10 @@
-import './App.scss';
+import "./App.scss";
+import Listing from "./components/pages/Listing";
 
 function App() {
   return (
     <div className="App">
+      <Listing />
     </div>
   );
 }
