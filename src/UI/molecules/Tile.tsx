@@ -1,13 +1,15 @@
 import Details from "../atoms/Details";
 import Image from "../atoms/Image";
 import "../../App.scss";
+import { Paper } from "@mui/material";
+import "./Tile.scss";
 
 function Tile(props: any) {
   return (
-    <div className="Tile">
+    <Paper className="Tile" elevation={8}>
       <Image />
       <Details {...props} />
-    </div>
+    </Paper>
   );
 }
 

@@ -1,6 +1,11 @@
 function Image() {
   return (
-    <img className="Image" width="300" src="pic_trulli.jpg" alt="Trulli" />
+    <img
+      className="Image"
+      style={{ width: "inherit" }}
+      src="pic_trulli.jpg"
+      alt="Trulli"
+    />
   );
 }
 
