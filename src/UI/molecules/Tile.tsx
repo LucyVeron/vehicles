@@ -2,11 +2,11 @@ import Details from "../atoms/Details";
 import Image from "../atoms/Image";
 import "../../App.scss";
 
-function Tile() {
+function Tile(props: any) {
   return (
     <div className="Tile">
       <Image />
-      <Details />
+      <Details {...props} />
     </div>
   );
 }
