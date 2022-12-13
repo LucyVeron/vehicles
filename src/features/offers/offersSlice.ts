@@ -23,8 +23,7 @@ export const offersSlice = createSlice({
 export const getOffersAsync = () => async (dispatch: any) => {
   try {
     const response = await axios.get(`${API_URL}`);
-    dispatch(getOffers(response.data));
-    console.log(response.data);
+    dispatch(getOffers(response.data.records));
   } catch (err: any) {
     throw new Error(err);
   }
