@@ -1,15 +1,9 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
-import { createSlice } from '@reduxjs/toolkit';
-
-export const slice = createSlice({
-  name: 'name',
-  initialState: {},
-  reducers: {}
-});
+import offersReducer from '../features/offers/offersSlice';
 
 export const store = configureStore({
   reducer: {
-    reducer: slice.reducer,
+    offers: offersReducer,
   },
 });
 
