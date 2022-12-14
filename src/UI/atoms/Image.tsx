@@ -3,8 +3,8 @@ function Image() {
     <img
       className="Image"
       style={{ width: "inherit" }}
-      src="pic_trulli.jpg"
-      alt="Trulli"
+      src="car.jpg"
+      alt="car"
     />
   );
 }
