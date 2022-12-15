@@ -5,7 +5,7 @@ function ChipFilter() {
   return (
     <Stack className="Chip" direction="row" spacing={1}>
       {items.map((item: string) => {
-        return <Chip label={item} size="small" />;
+        return <Chip key={item} label={item} size="small" />;
       })}
     </Stack>
   );

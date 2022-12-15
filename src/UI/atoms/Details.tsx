@@ -3,7 +3,7 @@ import ListItem from "@mui/material/ListItem";
 
 function Details(props: any) {
 
-  console.warn(props);
+  // console.warn(props);
 
   return (
     <List className="Details">

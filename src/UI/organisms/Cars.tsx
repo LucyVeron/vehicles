@@ -5,6 +5,20 @@ import Tile from "../molecules/Tile";
 import "./Cars.scss";
 
 function Cars() {
+  /* const data = useAppSelector(showOffers);
+  const dispatch = useAppDispatch();
+
+  return (
+    <div className="App">
+      {data.offers.map((offer: any) => {
+        return <p key={offer.offer_id}>{offer.brand}</p>;
+      })}
+      <button onClick={() => dispatch(getOffersAsync() as any)}>
+        GET OFFERS
+      </button>
+    </div>
+  ); */
+
   const data = useAppSelector(showOffers);
   const dispatch = useAppDispatch();
 
@@ -36,11 +50,13 @@ function Cars() {
   }, []);
 
   return (
-    <div className="Cars">
-      {mockOffers.map((offer: any) => {
-        return <Tile key={offer.offer_id} {...offer} />;
-      })}
-    </div>
+    <>
+      <div className="Cars">
+        {mockOffers.map((offer: any) => {
+          return <Tile key={offer.offer_id} {...offer} />;
+        })}
+      </div>
+    </>
   );
 }
 
