@@ -1,59 +1,31 @@
-import { useEffect } from "react";
-import { getOffersAsync, showOffers } from "../../features/offers/offersSlice";
+import React, { useEffect } from "react";
+import { showOffers, getOffersAsync } from "../../features/offers/offersSlice";
 import { useAppDispatch, useAppSelector } from "../../utils/hooks";
 import Tile from "../molecules/Tile";
 import "./Cars.scss";
 
 function Cars() {
-  /* const data = useAppSelector(showOffers);
-  const dispatch = useAppDispatch();
-
-  return (
-    <div className="App">
-      {data.offers.map((offer: any) => {
-        return <p key={offer.offer_id}>{offer.brand}</p>;
-      })}
-      <button onClick={() => dispatch(getOffersAsync() as any)}>
-        GET OFFERS
-      </button>
-    </div>
-  ); */
-
   const data = useAppSelector(showOffers);
   const dispatch = useAppDispatch();
 
-  const mockOffers: any = [
-    {
-      offer_id: "1",
-      name: "name1",
-    },
-    {
-      offer_id: "2",
-      name: "name2",
-    },
-    {
-      offer_id: "3",
-      name: "name3",
-    },
-    {
-      offer_id: "4",
-      name: "name4",
-    },
-    {
-      offer_id: "5",
-      name: "name5",
-    },
-  ];
+  const calledOnce = React.useRef(false);
 
   useEffect(() => {
+    if (calledOnce.current) {
+      return;
+    }
+
+    if (data.filteredOffers.length === 0) {
+      calledOnce.current = true;
+    }
     dispatch(getOffersAsync() as any);
-  }, []);
+  }, [data]);
 
   return (
     <>
       <div className="Cars">
-        {mockOffers.map((offer: any) => {
-          return <Tile key={offer.offer_id} {...offer} />;
+        {data.filteredOffers.map((offer: any) => {
+          return <Tile key={offer.id} {...offer} />;
         })}
       </div>
     </>

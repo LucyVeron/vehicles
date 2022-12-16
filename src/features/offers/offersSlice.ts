@@ -1,8 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-
-const USERS_API_URL = "https://jsonplaceholder.typicode.com/users";
-const API_URL = "https://instamotion.free.beeceptor.com/offers";
+const API_URL = "https://jsonplaceholder.typicode.com/users";
 
 export interface OffersState {
   offers: any[];
@@ -46,8 +44,8 @@ export const offersSlice = createSlice({
 
 export const getOffersAsync = () => async (dispatch: any) => {
   try {
-    const response = await axios.get(`${USERS_API_URL}`);
-    dispatch(getOffers(response.data /* .records */));
+    const response = await axios.get(`${API_URL}`);
+    dispatch(getOffers(response.data));
   } catch (err: any) {
     throw new Error(err);
   }
