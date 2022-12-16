@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { Button } from "@mui/material";
 import {
   showOffers,
   setName,
@@ -10,8 +10,6 @@ import { useAppDispatch, useAppSelector } from "../../utils/hooks";
 function TestFilter() {
   const data = useAppSelector(showOffers);
   const dispatch = useAppDispatch();
-  const nameInputRef = useRef<HTMLInputElement>(null);
-  const companyInputRef = useRef<HTMLInputElement>(null);
 
   const applyFilters = () => {
     const filteredOffers = data.offers.filter(
@@ -22,14 +20,12 @@ function TestFilter() {
     dispatch(setFilteredOffers(filteredOffers));
   };
 
-  const filterNames = () => {
-    dispatch(setName(nameInputRef.current?.value));
-    applyFilters();
+  const filterNames = (e: any) => {
+    dispatch(setName(e.target.value));
   };
 
-  const filterCompanies = () => {
-    dispatch(setCompany(companyInputRef.current?.value));
-    applyFilters();
+  const filterCompanies = (e: any) => {
+    dispatch(setCompany(e.target.value));
   };
 
   return (
@@ -37,14 +33,12 @@ function TestFilter() {
       <input
         type="text"
         placeholder="Search by name"
-        ref={nameInputRef}
-        onChange={filterNames}
+        onChange={(e) => filterNames(e)}
       />
       <input
         type="text"
         placeholder="Search by company"
-        ref={companyInputRef}
-        onChange={filterCompanies}
+        onChange={(e) => filterCompanies(e)}
       />
       <div>
         {data.filteredOffers.map((offer: any) => {
@@ -56,6 +50,10 @@ function TestFilter() {
           );
         })}
       </div>
+      <br />
+      <Button onClick={applyFilters} variant="contained">
+        Search
+      </Button>
     </div>
   );
 }
