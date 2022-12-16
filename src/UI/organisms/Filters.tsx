@@ -1,18 +1,30 @@
-import AutocompleteFilter from "../atoms/AutocompleteFilter";
+import { Button } from "@mui/material";
+import {
+  setFilteredOffers,
+  showOffers,
+} from "../../features/offers/offersSlice";
+import { useAppDispatch, useAppSelector } from "../../utils/hooks";
 import TestFilter from "../atoms/TestFilter";
-import Chips from "../molecules/Chips";
-import Colors from "../molecules/Colors";
-import Range from "../molecules/Range";
 import "./Filters.scss";
 
 function Filters() {
+  const data = useAppSelector(showOffers);
+  const dispatch = useAppDispatch();
+  const applyFilters = () => {
+    const filteredOffers = data.offers.filter(
+      (offer: any) =>
+        offer.company.name.toLowerCase().includes(data.company) &&
+        offer.name.toLowerCase().includes(data.name)
+    );
+    dispatch(setFilteredOffers(filteredOffers));
+  };
   return (
     <div className="Filters">
-      <TestFilter />
-      {/* <AutocompleteFilter />
-      <Chips />
-      <Colors />
-      <Range /> */}
+      <TestFilter type="name" />
+      <TestFilter type="company" />
+      <Button onClick={applyFilters} variant="contained">
+        Search
+      </Button>
     </div>
   );
 }
