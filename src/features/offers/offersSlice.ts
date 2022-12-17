@@ -64,6 +64,7 @@ export const offersSlice = createSlice({
     },
     setTopics: (state, action) => {
       state.topics = action.payload;
+      state.topicsContainer = action.payload;
     },
     setTopicsContainer: (state, action) => {
       state.topicsContainer = action.payload;

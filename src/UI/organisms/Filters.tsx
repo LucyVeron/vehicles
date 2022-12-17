@@ -5,6 +5,7 @@ import {
   setFilteredOffers,
   setName,
   setNameContainer,
+  setTopics,
   showOffers,
 } from "../../features/offers/offersSlice";
 import { useAppDispatch, useAppSelector } from "../../utils/hooks";
@@ -22,9 +23,10 @@ function Filters() {
         offer.company.name
           .toLowerCase()
           .includes(data.companyContainer.toLowerCase()) &&
-        offer.name.toLowerCase().includes(data.nameContainer.toLowerCase())/*  &&
-        offer.company.bs.split(" ").includes(data.filteredTopics) */
-        
+        offer.name
+          .toLowerCase()
+          .includes(data.nameContainer.toLowerCase()) /*   &&
+        offer.company.bs.split(" ").includes(data.filteredTopics.split(" ")) */
     );
 
     dispatch(setName(""));
@@ -38,9 +40,18 @@ function Filters() {
     dispatch(setCompany(""));
     dispatch(setCompanyContainer(""));
     dispatch(setFilteredOffers(data.filteredOffersContainer));
+    dispatch(setTopics(data.topicsContainer));
   };
 
-  useEffect(() => {});
+  useEffect(() => {
+    /* console.error(data.filteredTopics);
+    console.warn(data.offers[0]?.company.bs.split(" ")); */
+
+    const matches = data.offers[0]?.company.bs
+      .split(" ")
+      .filter((element: any) => data.filteredTopics.includes(element))?.length;
+    console.log(matches);
+  });
 
   return (
     <div className="Filters">

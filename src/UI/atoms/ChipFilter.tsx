@@ -1,6 +1,7 @@
 import { Chip, Stack } from "@mui/material";
 import { useEffect } from "react";
 import {
+  setFilteredTopics,
   setTopics,
   showOffers,
   Topic,
@@ -22,6 +23,13 @@ function ChipFilter() {
       }
     });
 
+    let filteredTopics = updatedTopics.filter((topic: any) => {
+      return topic.selected === true;
+    });
+
+    let filteredTopicNames = filteredTopics.map((topic: any) => topic.name);
+
+    dispatch(setFilteredTopics(filteredTopicNames));
     dispatch(setTopics(updatedTopics));
   };
 
