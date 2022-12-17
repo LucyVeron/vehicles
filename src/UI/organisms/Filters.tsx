@@ -1,11 +1,16 @@
-import { Button } from "@mui/material";
+import { Button, ButtonGroup } from "@mui/material";
 import {
+  setCompany,
+  setCompanyContainer,
   setFilteredOffers,
+  setName,
+  setNameContainer,
   showOffers,
 } from "../../features/offers/offersSlice";
 import { useAppDispatch, useAppSelector } from "../../utils/hooks";
-import TestFilter from "../atoms/TestFilter";
 import "./Filters.scss";
+import DropdownFilter from "../atoms/DropdownFilter";
+import { useEffect } from "react";
 
 function Filters() {
   const data = useAppSelector(showOffers);
@@ -13,18 +18,37 @@ function Filters() {
   const applyFilters = () => {
     const filteredOffers = data.offers.filter(
       (offer: any) =>
-        offer.company.name.toLowerCase().includes(data.company) &&
-        offer.name.toLowerCase().includes(data.name)
+        offer.company.name
+          .toLowerCase()
+          .includes(data.companyContainer.toLowerCase()) &&
+        offer.name.toLowerCase().includes(data.nameContainer.toLowerCase())
     );
+
+    dispatch(setName(""));
+    dispatch(setCompany(""));
     dispatch(setFilteredOffers(filteredOffers));
   };
+
+  const clearFilters = () => {
+    dispatch(setName(""));
+    dispatch(setNameContainer(""));
+    dispatch(setCompany(""));
+    dispatch(setCompanyContainer(""));
+    dispatch(setFilteredOffers(data.filteredOffersContainer));
+  };
+
+  useEffect(() => {});
+
   return (
     <div className="Filters">
-      <TestFilter type="name" />
-      <TestFilter type="company" />
-      <Button onClick={applyFilters} variant="contained">
-        Search
-      </Button>
+      <DropdownFilter type="name" />
+      <DropdownFilter type="company" />
+      <ButtonGroup variant="contained">
+        <Button onClick={applyFilters}>Search</Button>
+        <Button onClick={clearFilters} color="error">
+          Clear Filters
+        </Button>
+      </ButtonGroup>
     </div>
   );
 }

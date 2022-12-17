@@ -8,7 +8,9 @@ export interface OffersState {
   filteredOffers: any[];
   filteredOffersContainer: any[];
   name: string;
+  nameContainer: string;
   company: string;
+  companyContainer: string;
 }
 
 const initialState: OffersState = {
@@ -17,7 +19,9 @@ const initialState: OffersState = {
   filteredOffers: [],
   filteredOffersContainer: [],
   name: "",
+  nameContainer: "",
   company: "",
+  companyContainer: "",
 };
 
 export const offersSlice = createSlice({
@@ -39,6 +43,12 @@ export const offersSlice = createSlice({
     setCompany: (state, action) => {
       state.company = action.payload;
     },
+    setNameContainer: (state, action) => {
+      state.nameContainer = action.payload;
+    },
+    setCompanyContainer: (state, action) => {
+      state.companyContainer = action.payload;
+    },
   },
 });
 
@@ -51,8 +61,14 @@ export const getOffersAsync = () => async (dispatch: any) => {
   }
 };
 
-export const { getOffers, setFilteredOffers, setName, setCompany } =
-  offersSlice.actions;
+export const {
+  getOffers,
+  setFilteredOffers,
+  setName,
+  setCompany,
+  setNameContainer,
+  setCompanyContainer,
+} = offersSlice.actions;
 export const showOffers = (state: any) => state.offers;
 
 export default offersSlice.reducer;
