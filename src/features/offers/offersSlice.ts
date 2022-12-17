@@ -17,6 +17,7 @@ export interface OffersState {
   company: string;
   companyContainer: string;
   topics: Topic[];
+  topicsContainer: Topic[];
   filteredTopics: string[];
   filteredTopicsContainer: string[];
 }
@@ -31,6 +32,7 @@ const initialState: OffersState = {
   company: "",
   companyContainer: "",
   topics: [],
+  topicsContainer: [],
   filteredTopics: [],
   filteredTopicsContainer: [],
 };
@@ -64,7 +66,7 @@ export const offersSlice = createSlice({
       state.topics = action.payload;
     },
     setTopicsContainer: (state, action) => {
-      state.topics = action.payload;
+      state.topicsContainer = action.payload;
     },
     setFilteredTopics: (state, action) => {
       state.filteredTopics = action.payload;

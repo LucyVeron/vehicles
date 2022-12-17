@@ -1,6 +1,10 @@
 import { Chip, Stack } from "@mui/material";
 import { useEffect } from "react";
-import { showOffers, Topic } from "../../features/offers/offersSlice";
+import {
+  setTopics,
+  showOffers,
+  Topic,
+} from "../../features/offers/offersSlice";
 import { useAppDispatch, useAppSelector } from "../../utils/hooks";
 
 function ChipFilter() {
@@ -9,15 +13,16 @@ function ChipFilter() {
 
   useEffect(() => {});
 
-  const onTopicSelect = (e: any) => {
-    let selectedTopic = data.topics.find(
-      (topic: any) => topic.name === e.target.value
-    );
+  const onTopicSelect = (newName: string) => {
+    let updatedTopics = data.topics.map((topic: any) => {
+      if (topic.name === newName) {
+        return { name: newName, selected: !topic.selected };
+      } else {
+        return topic;
+      }
+    });
 
-    let newTopic = {
-      name: selectedTopic.name,
-      selected: !selectedTopic.selected,
-    };
+    dispatch(setTopics(updatedTopics));
   };
 
   return (
@@ -34,8 +39,8 @@ function ChipFilter() {
             key={topic.name}
             label={topic.name}
             size="small"
-            variant={topic.selected ? "contained" : ("filled" as any)}
-            onClick={(e: any) => onTopicSelect(e)}
+            color={topic.selected ? "primary" : "default"}
+            onClick={() => onTopicSelect(topic.name)}
           />
         );
       })}

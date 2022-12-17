@@ -22,7 +22,9 @@ function Filters() {
         offer.company.name
           .toLowerCase()
           .includes(data.companyContainer.toLowerCase()) &&
-        offer.name.toLowerCase().includes(data.nameContainer.toLowerCase())
+        offer.name.toLowerCase().includes(data.nameContainer.toLowerCase())/*  &&
+        offer.company.bs.split(" ").includes(data.filteredTopics) */
+        
     );
 
     dispatch(setName(""));
