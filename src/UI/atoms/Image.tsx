@@ -3,7 +3,7 @@ function Image() {
     <img
       className="Image"
       style={{ width: "inherit" }}
-      src="car.jpg"
+      src="image.png"
       alt="car"
     />
   );
