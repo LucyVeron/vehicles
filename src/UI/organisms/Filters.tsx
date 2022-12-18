@@ -11,12 +11,14 @@ import {
 import { useAppDispatch, useAppSelector } from "../../utils/hooks";
 import "./Filters.scss";
 import DropdownFilter from "../atoms/DropdownFilter";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Chips from "../molecules/Chips";
 
 function Filters() {
   const data = useAppSelector(showOffers);
   const dispatch = useAppDispatch();
+  const [noResult, setNoResult] = useState(false);
+
   const applyFilters = () => {
     const filteredOffers = data.offers.filter(
       (offer: any) =>
@@ -26,16 +28,25 @@ function Filters() {
         offer.name.toLowerCase().includes(data.nameContainer.toLowerCase()) &&
         offer.company.bs
           .split(" ")
-          .filter((element: any) => data.filteredTopics.includes(element))
-          ?.length > 0
+          .filter((element: any) =>
+            data.filteredTopics.length > 0
+              ? data.filteredTopics.includes(element)
+              : true
+          )?.length > 0
     );
 
     dispatch(setName(""));
     dispatch(setCompany(""));
     dispatch(setFilteredOffers(filteredOffers));
+
+    if (filteredOffers.length === 0) {
+      setNoResult(true);
+      console.error("No result");
+    }
   };
 
   const clearFilters = () => {
+    setNoResult(false);
     dispatch(setName(""));
     dispatch(setNameContainer(""));
     dispatch(setCompany(""));
@@ -57,6 +68,7 @@ function Filters() {
           Clear Filters
         </Button>
       </ButtonGroup>
+      <div>{noResult === true && <h1>No Results</h1>}</div>
     </div>
   );
 }
