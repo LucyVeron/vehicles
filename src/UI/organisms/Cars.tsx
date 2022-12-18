@@ -29,22 +29,20 @@ function Cars() {
           return <Tile key={offer.id} {...offer} />;
         })}
       </div>
-      <div
-        style={{
-          display: "flex",
-          width: "100%",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        {
-          data.noResult === true && (
-            <Alert variant="outlined" severity="error">
-              No matching results
-            </Alert>
-          )
-        }
-      </div>
+      {data.noResult === true && (
+        <div
+          style={{
+            display: "flex",
+            width: "100%",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <Alert variant="outlined" severity="error">
+            No matching results
+          </Alert>
+        </div>
+      )}
     </>
   );
 }

@@ -8,11 +8,11 @@ function Details(props: any) {
       <ListItem>Name: {props.name}</ListItem>
       <ListItem>Company: {props.company.name}</ListItem>
       <ListItem>City: {props.address.city}</ListItem>
-      <ListItem>
+      <ListItem sx={{ display: "flex", flexWrap: "wrap" }}>
         Topics:
         {props.company.bs.split(" ").map((topic: string) => {
           return (
-            <Chip sx={{ mx: 0.5 }} key={topic} label={topic} size="small" />
+            <Chip sx={{ m: 0.5 }} key={topic} label={topic} size="small" />
           );
         })}
       </ListItem>

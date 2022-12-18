@@ -7,7 +7,7 @@ function Tile(props: any) {
   const style = {
     padding: "15px",
     margin: "15px",
-    width: "400px",
+    width: "300px"
   };
 
   return (
