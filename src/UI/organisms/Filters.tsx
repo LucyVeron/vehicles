@@ -12,7 +12,7 @@ import { useAppDispatch, useAppSelector } from "../../utils/hooks";
 import "./Filters.scss";
 import DropdownFilter from "../atoms/DropdownFilter";
 import { useEffect } from "react";
-import ChipFilter from "../atoms/ChipFilter";
+import Chips from "../molecules/Chips";
 
 function Filters() {
   const data = useAppSelector(showOffers);
@@ -50,7 +50,7 @@ function Filters() {
     <div className="Filters">
       <DropdownFilter type="name" />
       <DropdownFilter type="company" />
-      <ChipFilter />
+      <Chips />
       <ButtonGroup variant="contained">
         <Button onClick={applyFilters}>Search</Button>
         <Button onClick={clearFilters} color="error">

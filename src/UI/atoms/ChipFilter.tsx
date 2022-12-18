@@ -1,58 +1,20 @@
-import { Chip, Stack } from "@mui/material";
-import { useEffect } from "react";
-import {
-  setFilteredTopics,
-  setTopics,
-  showOffers,
-  Topic,
-} from "../../features/offers/offersSlice";
-import { useAppDispatch, useAppSelector } from "../../utils/hooks";
+import { Chip } from "@mui/material";
 
-function ChipFilter() {
-  const data = useAppSelector(showOffers);
-  const dispatch = useAppDispatch();
-
-  useEffect(() => {});
-
+function ChipFilter(props: any) {
   const onTopicSelect = (newName: string) => {
-    let updatedTopics = data.topics.map((topic: any) => {
-      if (topic.name === newName) {
-        return { name: newName, selected: !topic.selected };
-      } else {
-        return topic;
-      }
-    });
-
-    let filteredTopics = updatedTopics.filter((topic: any) => {
-      return topic.selected === true;
-    });
-
-    let filteredTopicNames = filteredTopics.map((topic: any) => topic.name);
-
-    dispatch(setFilteredTopics(filteredTopicNames));
-    dispatch(setTopics(updatedTopics));
+    props.changeTopicStatus(newName);
   };
 
   return (
-    <Stack
-      sx={{ flexWrap: "wrap" }}
+    <Chip
       className="ChipFilter"
-      direction="row"
-      spacing={1}
-    >
-      {data.topics.map((topic: Topic) => {
-        return (
-          <Chip
-            style={{ margin: "5px", cursor: "pointer" }}
-            key={topic.name}
-            label={topic.name}
-            size="small"
-            color={topic.selected ? "primary" : "default"}
-            onClick={() => onTopicSelect(topic.name)}
-          />
-        );
-      })}
-    </Stack>
+      style={{ margin: "5px", cursor: "pointer" }}
+      key={props.topic.name}
+      label={props.topic.name}
+      size="small"
+      color={props.topic.selected ? "primary" : "default"}
+      onClick={() => onTopicSelect(props.topic.name)}
+    />
   );
 }
 
