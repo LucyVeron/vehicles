@@ -20,6 +20,7 @@ export interface OffersState {
   topicsContainer: Topic[];
   filteredTopics: string[];
   filteredTopicsContainer: string[];
+  noResult: boolean;
 }
 
 const initialState: OffersState = {
@@ -35,6 +36,7 @@ const initialState: OffersState = {
   topicsContainer: [],
   filteredTopics: [],
   filteredTopicsContainer: [],
+  noResult: false
 };
 
 export const offersSlice = createSlice({
@@ -74,6 +76,9 @@ export const offersSlice = createSlice({
     setFilteredTopicsContainer: (state, action) => {
       state.filteredTopicsContainer = action.payload;
     },
+    setNoResult: (state, action) => {
+      state.noResult = action.payload;
+    }
   },
 });
 
@@ -112,6 +117,7 @@ export const {
   setFilteredTopics,
   setTopicsContainer,
   setFilteredTopicsContainer,
+  setNoResult
 } = offersSlice.actions;
 export const showOffers = (state: any) => state.offers;
 

@@ -1,3 +1,4 @@
+import { Alert } from "@mui/material";
 import React, { useEffect } from "react";
 import { showOffers, getOffersAsync } from "../../features/offers/offersSlice";
 import { useAppDispatch, useAppSelector } from "../../utils/hooks";
@@ -27,6 +28,22 @@ function Cars() {
         {data.filteredOffers.map((offer: any) => {
           return <Tile key={offer.id} {...offer} />;
         })}
+      </div>
+      <div
+        style={{
+          display: "flex",
+          width: "100%",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        {
+          data.noResult === true && (
+            <Alert variant="outlined" severity="error">
+              No matching results
+            </Alert>
+          )
+        }
       </div>
     </>
   );
