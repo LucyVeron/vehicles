@@ -23,10 +23,11 @@ function Filters() {
         offer.company.name
           .toLowerCase()
           .includes(data.companyContainer.toLowerCase()) &&
-        offer.name
-          .toLowerCase()
-          .includes(data.nameContainer.toLowerCase()) /*   &&
-        offer.company.bs.split(" ").includes(data.filteredTopics.split(" ")) */
+        offer.name.toLowerCase().includes(data.nameContainer.toLowerCase()) &&
+        offer.company.bs
+          .split(" ")
+          .filter((element: any) => data.filteredTopics.includes(element))
+          ?.length > 0
     );
 
     dispatch(setName(""));
@@ -43,15 +44,7 @@ function Filters() {
     dispatch(setTopics(data.topicsContainer));
   };
 
-  useEffect(() => {
-    /* console.error(data.filteredTopics);
-    console.warn(data.offers[0]?.company.bs.split(" ")); */
-
-    const matches = data.offers[0]?.company.bs
-      .split(" ")
-      .filter((element: any) => data.filteredTopics.includes(element))?.length;
-    console.log(matches);
-  });
+  useEffect(() => {});
 
   return (
     <div className="Filters">
