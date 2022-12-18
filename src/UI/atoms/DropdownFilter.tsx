@@ -8,6 +8,7 @@ import {
 import { useAppDispatch, useAppSelector } from "../../utils/hooks";
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import { useEffect } from "react";
+import Label from "./Label";
 
 function DropdownFilter(props: any) {
   const data = useAppSelector(showOffers);
@@ -44,7 +45,7 @@ function DropdownFilter(props: any) {
   return (
     <div>
       <FormControl fullWidth>
-        <InputLabel id="select-label">{props.type}</InputLabel>
+        <Label text={props.type} />
         <Select
           labelId="select-label"
           id="name-select"
