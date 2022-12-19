@@ -6,7 +6,7 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import "./index.scss";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Product from "./components/pages/Product";
+import Offer from "./components/pages/Offer";
 import Listing from "./components/pages/Listing";
 import Error from "./components/pages/Error";
 
@@ -19,8 +19,8 @@ const router = createBrowserRouter([
     errorElement: <Error />,
   },
   {
-    path: "products/:productId",
-    element: <Product />,
+    path: "offers/:offerId",
+    element: <Offer />,
     errorElement: <Error />,
   },
 ]);

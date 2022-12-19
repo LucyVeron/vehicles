@@ -15,7 +15,7 @@ function Tile(props: any) {
   };
 
   return (
-    <Link className="Tile" style={style} to={`products/${props.id}`}>
+    <Link className="Tile" style={style} to={`offers/${props.id}`}>
       <Paper elevation={8} style={style}>
         <Image />
         <Details {...props} />

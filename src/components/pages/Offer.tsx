@@ -1,24 +1,14 @@
 import { ArrowBack } from "@mui/icons-material";
-import {
-  Chip,
-  CircularProgress,
-  IconButton,
-  List,
-  ListItem,
-  Paper,
-} from "@mui/material";
+import { Chip, CircularProgress, List, ListItem, Paper } from "@mui/material";
 import Button from "@mui/material/Button";
 import React, { useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { getOfferById, showOffers } from "../../features/offers/offersSlice";
 import { useAppDispatch, useAppSelector } from "../../utils/hooks";
-import "./Product.scss";
 
-function Product() {
+function Offer() {
   const param = useLocation().pathname;
-  const productId: number = parseInt(
-    param.substring(param.lastIndexOf("/") + 1)
-  );
+  const offerId: number = parseInt(param.substring(param.lastIndexOf("/") + 1));
 
   const offer = useAppSelector(showOffers).offer;
   const dispatch = useAppDispatch();
@@ -34,12 +24,12 @@ function Product() {
       calledOnce.current = true;
     }
 
-    dispatch(getOfferById(productId));
-  }, [offer, dispatch, productId]);
+    dispatch(getOfferById(offerId));
+  }, [offer, dispatch, offerId]);
 
   if (offer) {
     return (
-      <div className="Product">
+      <div className="Offer">
         <Link to={`/`}>
           <Button variant="contained" sx={{ margin: "1rem" }}>
             <ArrowBack sx={{ mr: "0.5rem" }} /> BACK TO OFFERS
@@ -86,4 +76,4 @@ function Product() {
   }
 }
 
-export default Product;
+export default Offer;
