@@ -1,9 +1,10 @@
 import { ArrowBack } from "@mui/icons-material";
-import { Chip, CircularProgress, List, ListItem, Paper } from "@mui/material";
+import { Chip, List, ListItem, Paper } from "@mui/material";
 import Button from "@mui/material/Button";
 import React, { useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { getOfferById, showOffers } from "../../features/offers/offersSlice";
+import Image from "../../UI/atoms/Image";
 import Spinner from "../../UI/atoms/Spinner";
 import { useAppDispatch, useAppSelector } from "../../utils/hooks";
 
@@ -38,7 +39,7 @@ function Offer() {
         </Link>
 
         <Paper sx={{ maxWidth: "500px", margin: "1rem", padding: "1rem" }}>
-          <img style={{ width: "100%" }} src="../../../image.png" alt="image" />
+          <Image />
           <List className="Details">
             <ListItem>Name: {offer.name}</ListItem>
             <ListItem>Company: {offer.company.name}</ListItem>
