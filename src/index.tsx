@@ -8,6 +8,7 @@ import "./index.scss";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Product from "./components/pages/Product";
 import Listing from "./components/pages/Listing";
+import Error from "./components/pages/Error";
 
 const container = document.getElementById("root")!;
 const root = createRoot(container);
@@ -15,6 +16,12 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Listing />,
+    errorElement: <Error />,
+  },
+  {
+    path: "products/:productId",
+    element: <Product />,
+    errorElement: <Error />,
   },
 ]);
 
