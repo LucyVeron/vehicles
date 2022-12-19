@@ -4,6 +4,7 @@ import Button from "@mui/material/Button";
 import React, { useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { getOfferById, showOffers } from "../../features/offers/offersSlice";
+import Spinner from "../../UI/atoms/Spinner";
 import { useAppDispatch, useAppSelector } from "../../utils/hooks";
 
 function Offer() {
@@ -36,8 +37,8 @@ function Offer() {
           </Button>
         </Link>
 
-        <Paper sx={{ margin: "1rem", padding: "1rem" }}>
-          <img src="../../../image.png" alt="image" />
+        <Paper sx={{ maxWidth: "500px", margin: "1rem", padding: "1rem" }}>
+          <img style={{ width: "100%" }} src="../../../image.png" alt="image" />
           <List className="Details">
             <ListItem>Name: {offer.name}</ListItem>
             <ListItem>Company: {offer.company.name}</ListItem>
@@ -60,19 +61,7 @@ function Offer() {
       </div>
     );
   } else {
-    return (
-      <div
-        className="Spinner"
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          height: "90vh",
-          alignItems: "center",
-        }}
-      >
-        <CircularProgress size="6rem" />
-      </div>
-    );
+    return <Spinner />;
   }
 }
 
