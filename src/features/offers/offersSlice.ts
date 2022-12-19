@@ -12,6 +12,7 @@ export interface OffersState {
   offersContainer: any[];
   filteredOffers: any[];
   filteredOffersContainer: any[];
+  offer: any;
   name: string;
   nameContainer: string;
   company: string;
@@ -28,6 +29,7 @@ const initialState: OffersState = {
   offersContainer: [],
   filteredOffers: [],
   filteredOffersContainer: [],
+  offer: null,
   name: "",
   nameContainer: "",
   company: "",
@@ -51,6 +53,9 @@ export const offersSlice = createSlice({
     },
     setFilteredOffers: (state, action) => {
       state.filteredOffers = action.payload;
+    },
+    setOffer: (state, action) => {
+      state.offer = action.payload;
     },
     setName: (state, action) => {
       state.name = action.payload;
@@ -106,9 +111,21 @@ export const getOffersAsync = () => async (dispatch: any) => {
   }
 };
 
+export const getOfferById = (id: number) => async (dispatch: any) => {
+  try {
+    const response = await axios.get(`${API_URL}`);
+    const offer = response.data.filter((offer: any) => offer.id === id);
+    dispatch(setOffer(offer[0]));
+  }
+  catch (err: any) {
+    throw new Error(err);
+  }
+};
+
 export const {
   getOffers,
   setFilteredOffers,
+  setOffer,
   setName,
   setCompany,
   setNameContainer,
