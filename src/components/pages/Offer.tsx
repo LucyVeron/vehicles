@@ -1,7 +1,7 @@
 import { Paper } from "@mui/material";
 import React, { useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import { getOfferById, showOffers } from "../../features/offers/offersSlice";
+import { getOfferById, showOffers } from "../../utils/offersSlice";
 import BackButton from "../../UI/atoms/BackButton";
 import Details from "../../UI/atoms/Details";
 import Image from "../../UI/atoms/Image";

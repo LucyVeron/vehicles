@@ -1,6 +1,6 @@
 import { Alert, Button } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import { showOffers, getOffersAsync } from "../../features/offers/offersSlice";
+import { showOffers, getOffersAsync } from "../../utils/offersSlice";
 import { useAppDispatch, useAppSelector } from "../../utils/hooks";
 import Tile from "../molecules/Tile";
 import "./Cars.scss";

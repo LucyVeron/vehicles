@@ -4,7 +4,7 @@ import {
   setName,
   setNameContainer,
   showOffers,
-} from "../../features/offers/offersSlice";
+} from "../../utils/offersSlice";
 import { useAppDispatch, useAppSelector } from "../../utils/hooks";
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import { useEffect } from "react";

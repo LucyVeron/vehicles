@@ -8,7 +8,7 @@ import {
   setNoResult,
   setTopics,
   showOffers,
-} from "../../features/offers/offersSlice";
+} from "../../utils/offersSlice";
 import { useAppDispatch, useAppSelector } from "../../utils/hooks";
 import "./Filters.scss";
 import DropdownFilter from "../atoms/DropdownFilter";

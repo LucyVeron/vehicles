@@ -4,7 +4,7 @@ import {
   setTopics,
   showOffers,
   Topic,
-} from "../../features/offers/offersSlice";
+} from "../../utils/offersSlice";
 import { useAppDispatch, useAppSelector } from "../../utils/hooks";
 import ChipFilter from "../atoms/ChipFilter";
 
