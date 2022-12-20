@@ -1,4 +1,14 @@
 .Cars {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
+  &-button {
+    position: fixed;
+    bottom: 3rem;
+    right: 3rem;
+  }
+  &-list {
+    display: flex;
+    flex-wrap: wrap;
+    height: 70vh;
+  }
 }

@@ -9,7 +9,7 @@ function Cars() {
   const data = useAppSelector(showOffers);
   const dispatch = useAppDispatch();
 
-  const [count, setCount] = useState(2);
+  const [count, setCount] = useState(4);
 
   const calledOnce = React.useRef(false);
 
@@ -39,9 +39,20 @@ function Cars() {
   return (
     <>
       <div className="Cars">
-        {offersSlice().map((offer: any) => {
-          return <Tile key={offer.id} {...offer} />;
-        })}
+        <div className="Cars-list">
+          {offersSlice().map((offer: any) => {
+            return <Tile key={offer.id} {...offer} />;
+          })}
+        </div>
+        {data.noResult === false && (
+          <div className="Cars-button">
+            {count < data.filteredOffers.length && (
+              <Button variant="contained" onClick={loadMore}>
+                Load More
+              </Button>
+            )}
+          </div>
+        )}
       </div>
       {data.noResult === true && (
         <div
@@ -56,10 +67,6 @@ function Cars() {
             No matching results
           </Alert>
         </div>
-      )}
-
-      {count < data.filteredOffers.length && (
-        <Button onClick={loadMore}>Show More</Button>
       )}
     </>
   );
