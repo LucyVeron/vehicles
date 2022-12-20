@@ -1,5 +1,5 @@
-import { Alert } from "@mui/material";
-import React, { useEffect } from "react";
+import { Alert, Button } from "@mui/material";
+import React, { useEffect, useState } from "react";
 import { showOffers, getOffersAsync } from "../../features/offers/offersSlice";
 import { useAppDispatch, useAppSelector } from "../../utils/hooks";
 import Tile from "../molecules/Tile";
@@ -9,7 +9,21 @@ function Cars() {
   const data = useAppSelector(showOffers);
   const dispatch = useAppDispatch();
 
+  const [count, setCount] = useState(2);
+
   const calledOnce = React.useRef(false);
+
+  const offersSlice = () => {
+    return data.filteredOffers.slice(0, count);
+  };
+
+  const loadMore = () => {
+    if (count < data.filteredOffers.length) {
+      setCount(count + 2);
+    } else {
+      alert("stop");
+    }
+  };
 
   useEffect(() => {
     if (calledOnce.current) {
@@ -25,7 +39,7 @@ function Cars() {
   return (
     <>
       <div className="Cars">
-        {data.filteredOffers.map((offer: any) => {
+        {offersSlice().map((offer: any) => {
           return <Tile key={offer.id} {...offer} />;
         })}
       </div>
@@ -42,6 +56,10 @@ function Cars() {
             No matching results
           </Alert>
         </div>
+      )}
+
+      {count < data.filteredOffers.length && (
+        <Button onClick={loadMore}>Show More</Button>
       )}
     </>
   );
